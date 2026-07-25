@@ -39,6 +39,33 @@
         .qr-wrap img { width:100%; height:100%; object-fit:contain; }
         .upi-box { display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,0.5); border:1px dashed var(--glow); border-radius:12px; padding:14px 20px; margin-bottom:18px; }
         .upi-val { font-family:'Space Mono', monospace; font-weight:700; font-size:1.1rem; color: #fff; letter-spacing: 1px; }
+        
+        /* Razorpay Pay Link Button */
+        .razorpay-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: #fff;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: 1px solid #38bdf8;
+            box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .razorpay-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(2, 132, 199, 0.7);
+        }
+
         .note-box { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:15px; margin-top:20px; text-align:left; font-size:11px; color:#ccc; line-height:1.6; }
         .note-box b { color: var(--glow); }
         .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:3000; padding:20px; overflow-y: auto; }
@@ -48,9 +75,207 @@
         .info-table td { border-bottom: 1px solid rgba(255,255,255,0.05); padding:10px; text-align:left; }
         footer { text-align:center; padding:40px 20px; border-top:1px solid var(--border); font-size: 10px; opacity: 0.5; }
         .welcome-harsh { background: linear-gradient(90deg, #ff0080, #7928ca); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-weight: 800; cursor: pointer; margin-bottom: 10px; font-size: 10px; box-shadow: 0 0 10px #7928ca; }
+
+        /* Custom Popup Styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 15px;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .modal-card {
+            background: #121318;
+            border: 1px solid #23262f;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            padding: 24px;
+            position: relative;
+            color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #1c1e24;
+            border: 1px solid #2e323d;
+            color: #888;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .close-btn:hover { color: #fff; background: #2a2d38; }
+
+        .modal-header {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: #8a8d93;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .red-dot { color: #ff4747; font-size: 10px; }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+        }
+        .highlight { color: #24A1DE; }
+
+        .telegram-btn {
+            background: #1a1c23;
+            border: 1px solid #2d303b;
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 15px;
+            transition: all 0.2s ease;
+        }
+        .telegram-btn:hover {
+            border-color: #24A1DE;
+            background: #20232c;
+        }
+        .btn-left { display: flex; align-items: center; gap: 12px; }
+        .telegram-icon { font-size: 28px; color: #24A1DE; }
+        .btn-text { display: flex; flex-direction: column; }
+        .btn-sub { font-size: 9px; color: #8a8d93; font-weight: 700; letter-spacing: 1px; }
+        .btn-main { font-size: 15px; font-weight: 600; margin-top: 2px; }
+        .btn-arrow {
+            background: #2a2d38;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #24A1DE;
+            font-size: 14px;
+        }
+
+        .qr-box {
+            background: #181a20;
+            border: 1px solid #262933;
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .qr-code-img img {
+            width: 90px;
+            height: 90px;
+            border-radius: 8px;
+            background: #fff;
+            padding: 4px;
+            display: block;
+        }
+        .qr-details { display: flex; flex-direction: column; gap: 6px; }
+        .qr-title { font-size: 10px; color: #8a8d93; font-weight: 700; letter-spacing: 1px; }
+        .qr-desc { font-size: 11px; color: #b0b3b8; margin: 0; line-height: 1.3; }
+
+        .save-qr-btn {
+            background: #242731;
+            border: 1px solid #363a48;
+            color: #24A1DE;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+            transition: 0.2s;
+        }
+        .save-qr-btn:hover { background: #2f3340; color: #fff; }
+
+        .dismiss-btn {
+            width: 100%;
+            background: #22252e;
+            border: none;
+            color: #a0a4ab;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .dismiss-btn:hover { background: #2c303c; color: #fff; }
     </style>
 </head>
 <body>
+
+    <!-- Popup Modal -->
+    <div id="customModal" class="modal-overlay">
+      <div class="modal-card">
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+        <div class="modal-header">
+          <span class="red-dot">●</span> TIMEPASS PREMIUM NOTICE
+        </div>
+        <h2 class="modal-title">Join Our Official <span class="highlight">Telegram</span> Channel</h2>
+
+        <a href="https://t.me/TIMEPASS_BACKUP_1" target="_blank" class="telegram-btn">
+          <div class="btn-left">
+            <i class="fa-brands fa-telegram telegram-icon"></i>
+            <div class="btn-text">
+              <span class="btn-sub">OFFICIAL CHANNEL</span>
+              <span class="btn-main">Join Telegram Channel</span>
+            </div>
+          </div>
+          <div class="btn-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <div class="qr-box">
+          <div class="qr-code-img">
+            <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/TIMEPASS_BACKUP_1" alt="Telegram QR Code">
+          </div>
+          <div class="qr-details">
+            <span class="qr-title">OFFICIAL QR CODE</span>
+            <p class="qr-desc">Scan or save this QR code to join our official channel directly.</p>
+            <button class="save-qr-btn" onclick="downloadQR()">
+              <i class="fa-solid fa-download"></i> Save QR Code
+            </button>
+          </div>
+        </div>
+
+        <button class="dismiss-btn" onclick="closeModal()">Dismiss</button>
+      </div>
+    </div>
 
     <header>
         <div class="logo">⚡ TIME<span>PASS</span></div>
@@ -120,6 +345,11 @@
                     <span class="upi-val">pmharsh@fam</span>
                     <button onclick="copyUPI()" style="background:transparent; border:1px solid var(--glow); color:var(--glow); padding:5px 12px; border-radius:50px; cursor:pointer;">COPY</button>
                 </div>
+
+                <!-- 🔥 Razorpay Direct Payment Link Button 🔥 -->
+                <a id="payRazorpayBtn" href="https://razorpay.me/@pmharsh" target="_blank" onclick="trackRazorpay()" class="razorpay-btn">
+                    <i class="fa-solid fa-credit-card"></i> <span id="razorpayText">PAY NOW →</span>
+                </a>
                 
                 <div id="payNote" class="note-box" style="margin-bottom:15px; border-color:rgba(160,32,240,0.5); display:none;">
                     <p><b>⚠️ NOTE:</b> Isme aapko ek private channel milega jisme <b>Desi, Foreign, aur Adult Webseries/Movies</b> ka access hoga.</p>
@@ -155,7 +385,35 @@
         const CHAT_ID = "1763060393";
         const visitStart = Date.now();
 
-        // ── Device + Browser info collect karo ──
+        // Popup Modal Functions
+        function closeModal() {
+            const modal = document.getElementById('customModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // 4 Second Auto Close
+        setTimeout(() => {
+            closeModal();
+        }, 4000);
+
+        function downloadQR() {
+            const qrSrc = document.getElementById('qrImage').src;
+            fetch(qrSrc)
+              .then(response => response.blob())
+              .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'Timepass_Telegram_QR.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              })
+              .catch(() => alert('QR Code download failed.'));
+        }
+
+        // Device + Browser info collect karo
         function getDeviceInfo() {
             const ua = navigator.userAgent;
             let browser = "Unknown";
@@ -181,7 +439,7 @@
             return { browser, os, device, screen, lang, tz };
         }
 
-        // ── IP + ISP fetch ──
+        // IP + ISP fetch
         async function getIPInfo() {
             try {
                 const r = await fetch("https://ipapi.co/json/");
@@ -198,12 +456,12 @@
             }
         }
 
-        // ── Kitne minute baad click kiya ──
+        // Kitne minute baad click kiya
         function getMinutes() {
             return ((Date.now() - visitStart) / 60000).toFixed(1);
         }
 
-        // ── Main notify function ──
+        // Main notify function
         async function notifyBot(msg) {
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
             await fetch(url, {
@@ -217,7 +475,7 @@
             });
         }
 
-        // ── Page Load — Visitor aaya ──
+        // Page Load — Visitor aaya
         window.onload = async () => {
             const d = getDeviceInfo();
             const ip = await getIPInfo();
@@ -239,20 +497,20 @@
             notifyBot(msg);
         };
 
-        // ── Harsh Button ──
+        // Harsh Button
         function trackHarsh() {
             notifyBot("🚩 <b>HARSH Bhai ne Website Check Kari!</b>\n⏰ " + new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }));
             alert("Jai Shree Ram, Harsh Bhai! Notification bhej di gayi hai.");
         }
 
-        // ── INFO button click ──
+        // INFO button click
         function openInfo() {
             document.getElementById('infoModal').style.display = 'block';
             notifyBot(`ℹ️ <b>INFO Button Click Kiya!</b>\n⏱️ Site par: ${getMinutes()} min se hai`);
         }
         function closeInfo() { document.getElementById('infoModal').style.display = 'none'; }
 
-        // ── Buy Pack click ──
+        // Buy Pack click
         const UPI = "pmharsh@fam";
         let selAmt = 0, selPlan = "", currentCat = "";
 
@@ -296,7 +554,7 @@
             el.classList.add('selected'); selAmt = p; selPlan = n;
         }
 
-        // ── Proceed to Pay ──
+        // Proceed to Pay
         function goToPay() {
             if (!selAmt) return alert("Pehle ek plan select karo! 👆");
 
@@ -307,6 +565,10 @@
 ⏱️ <b>Site par:</b> ${getMinutes()} min se hai`);
 
             document.getElementById('payAmt').textContent = '₹' + selAmt;
+            
+            // Auto Set Selected Amount on Razorpay Button
+            document.getElementById('razorpayText').textContent = `PAY ₹${selAmt} VIA UPI / CARD →`;
+
             document.getElementById('buyStep1').style.display = 'none';
             document.getElementById('buyStep2').style.display = 'block';
 
@@ -315,7 +577,16 @@
             else { payNote.style.display = 'none'; }
         }
 
-        // ── UPI Copy ──
+        // Track Razorpay Payment Click
+        function trackRazorpay() {
+            notifyBot(`💳 <b>RAZORPAY LINK PAR CLICK KIYA!</b>
+📦 <b>Pack:</b> ${catName[currentCat]}
+🗓️ <b>Plan:</b> ${selPlan}
+💵 <b>Amount:</b> ₹${selAmt}
+⏱️ <b>Site par:</b> ${getMinutes()} min se hai`);
+        }
+
+        // UPI Copy
         function copyUPI() {
             navigator.clipboard.writeText(UPI);
             alert("UPI ID Copied!");
@@ -327,7 +598,7 @@
 ⏱️ <b>Site par:</b> ${getMinutes()} min se hai`);
         }
 
-        // ── Send Screenshot (Telegram link) ──
+        // Send Screenshot (Telegram link)
         function sendTele() {
             notifyBot(`📤 <b>SCREENSHOT BHEJNE WALA HAI!</b>
 📦 <b>Pack:</b> ${catName[currentCat]}
@@ -337,256 +608,6 @@
 
             window.open(`https://t.me/pmharsh?text=Jai Shree Ram Bhai! Payment Ho Gayi Hai.%0APlan: ${selPlan} (₹${selAmt})%0AScreenshot Bhej Raha Hoon! 🙏`, '_blank');
         }
-        <!-- Font Awesome Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<!-- Modal Background Overlay -->
-<div id="customModal" class="modal-overlay">
-  <div class="modal-card">
-    
-    <!-- Close Button (X) -->
-    <button class="close-btn" onclick="closeModal()">&times;</button>
-
-    <!-- Header Tag -->
-    <div class="modal-header">
-      <span class="red-dot">●</span> TIMEPASS PREMIUM NOTICE
-    </div>
-
-    <!-- Main Title -->
-    <h2 class="modal-title">Join Our Official <span class="highlight">Telegram</span> Channel</h2>
-
-    <!-- Telegram Join Button -->
-    <a href="https://t.me/TIMEPASS_BACKUP_1" target="_blank" class="telegram-btn">
-      <div class="btn-left">
-        <i class="fa-brands fa-telegram telegram-icon"></i>
-        <div class="btn-text">
-          <span class="btn-sub">OFFICIAL CHANNEL</span>
-          <span class="btn-main">Join Telegram Channel</span>
-        </div>
-      </div>
-      <div class="btn-arrow">
-        <i class="fa-solid fa-arrow-right"></i>
-      </div>
-    </a>
-
-    <!-- QR Code Section -->
-    <div class="qr-box">
-      <div class="qr-code-img">
-        <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/TIMEPASS_BACKUP_1" alt="Telegram QR Code">
-      </div>
-      <div class="qr-details">
-        <span class="qr-title">OFFICIAL QR CODE</span>
-        <p class="qr-desc">Scan or save this QR code to join our official channel directly.</p>
-        <button class="save-qr-btn" onclick="downloadQR()">
-          <i class="fa-solid fa-download"></i> Save QR Code
-        </button>
-      </div>
-    </div>
-
-    <!-- Dismiss Button -->
-    <button class="dismiss-btn" onclick="closeModal()">Dismiss</button>
-
-  </div>
-</div>
-
-<!-- Styling (CSS) -->
-<style>
-  /* Overlay */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 99999;
-    padding: 15px;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-
-  /* Main Card */
-  .modal-card {
-    background: #121318;
-    border: 1px solid #23262f;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 420px;
-    padding: 24px;
-    position: relative;
-    color: #ffffff;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    box-sizing: border-box;
-  }
-
-  /* Close X button */
-  .close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #1c1e24;
-    border: 1px solid #2e323d;
-    color: #888;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s;
-  }
-  .close-btn:hover { color: #fff; background: #2a2d38; }
-
-  /* Header Dot */
-  .modal-header {
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    color: #8a8d93;
-    font-weight: 700;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .red-dot { color: #ff4747; font-size: 10px; }
-
-  /* Title */
-  .modal-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0 0 20px 0;
-    line-height: 1.3;
-  }
-  .highlight { color: #24A1DE; }
-
-  /* Telegram Action Box */
-  .telegram-btn {
-    background: #1a1c23;
-    border: 1px solid #2d303b;
-    border-radius: 12px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    color: white;
-    margin-bottom: 15px;
-    transition: all 0.2s ease;
-  }
-  .telegram-btn:hover {
-    border-color: #24A1DE;
-    background: #20232c;
-  }
-  .btn-left { display: flex; align-items: center; gap: 12px; }
-  .telegram-icon { font-size: 28px; color: #24A1DE; }
-  .btn-text { display: flex; flex-direction: column; }
-  .btn-sub { font-size: 9px; color: #8a8d93; font-weight: 700; letter-spacing: 1px; }
-  .btn-main { font-size: 15px; font-weight: 600; margin-top: 2px; }
-  .btn-arrow {
-    background: #2a2d38;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #24A1DE;
-    font-size: 14px;
-  }
-
-  /* QR Code Container */
-  .qr-box {
-    background: #181a20;
-    border: 1px solid #262933;
-    border-radius: 14px;
-    padding: 16px;
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  .qr-code-img img {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-    background: #fff;
-    padding: 4px;
-    display: block;
-  }
-  .qr-details { display: flex; flex-direction: column; gap: 6px; }
-  .qr-title { font-size: 10px; color: #8a8d93; font-weight: 700; letter-spacing: 1px; }
-  .qr-desc { font-size: 11px; color: #b0b3b8; margin: 0; line-height: 1.3; }
-  
-  .save-qr-btn {
-    background: #242731;
-    border: 1px solid #363a48;
-    color: #24A1DE;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 4px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    width: fit-content;
-    transition: 0.2s;
-  }
-  .save-qr-btn:hover { background: #2f3340; color: #fff; }
-
-  /* Dismiss Button */
-  .dismiss-btn {
-    width: 100%;
-    background: #22252e;
-    border: none;
-    color: #a0a4ab;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .dismiss-btn:hover { background: #2c303c; color: #fff; }
-</style>
-
-<!-- Functionality (JavaScript) -->
-<script>
-  // Manual Close Function
-  function closeModal() {
-    const modal = document.getElementById('customModal');
-    if (modal) {
-      modal.style.display = 'none';
-    }
-  }
-
-  // 💥 4 Second Auto-Close Timer 💥
-  setTimeout(() => {
-    closeModal();
-  }, 4000); // 4000 milliseconds = 4 seconds
-
-  // QR Code Download Function
-  function downloadQR() {
-    const qrSrc = document.getElementById('qrImage').src;
-    fetch(qrSrc)
-      .then(response => response.blob())
-      .then(blob => {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'Timepass_Telegram_QR.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      })
-      .catch(() => alert('QR Code download failed.'));
-  }
-</script>
+    </script>
 </body>
 </html>
