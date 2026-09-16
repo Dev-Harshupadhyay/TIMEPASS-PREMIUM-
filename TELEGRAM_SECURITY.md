@@ -1,28 +1,29 @@
 # Telegram bot secrets
 
-The Telegram bot token must never be placed in `index.html` or any other browser-delivered file. Netlify environment variables are the correct place for it, but the browser cannot read them directly.
+The Telegram bot token must NEVER be placed in `index.html` or any other browser-delivered file. Environment variables on the hosting platform are the correct place for it.
 
-Set these variables in Netlify (**Site configuration → Environment variables**):
+## Endpoints
 
-- `TELEGRAM_BOT_TOKEN` = your rotated bot token
-- `TELEGRAM_CHAT_ID` = your chat ID
+The frontend `notifyBot()` helper tries **both** endpoints automatically (Vercel first, then Netlify), so the same `index.html` works on either host:
 
-The server-side function is available at `/.netlify/functions/notify-bot`.
+- Vercel: `POST /api/telegram-notify` (from `api/telegram-notify.js`)
+- Netlify: `POST /.netlify/functions/telegram-notify` (from `netlify/functions/telegram-notify.js`)
 
-Update the frontend notification helper to call the function instead of the Telegram API directly:
+Admin auth works the same way (`/api/admin-auth` and `/.netlify/functions/admin-auth`).
 
-```js
-async function notifyBot(msg) {
-  try {
-    await fetch("/.netlify/functions/notify-bot", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: msg })
-    });
-  } catch (err) {
-    console.error("Bot Error:", err);
-  }
-}
-```
+## Required environment variables
 
-After deploying the function and updating the frontend helper, remove `BOT_TOKEN` from `index.html`. Since the token was already public, revoke it with BotFather and create a new one before setting `TELEGRAM_BOT_TOKEN`.
+**Vercel** (Project → Settings → Environment Variables) or **Netlify** (Site configuration → Environment variables):
+
+- `TELEGRAM_BOT_TOKEN` = your bot token
+- `TELEGRAM_CHAT_ID` = your chat/channel ID
+- `ADMIN_PASSWORD` = admin panel password
+
+## If the old token leaked
+
+The previous version of this file briefly contained a browser-side token. Since it was public:
+
+1. Open @BotFather → `/revoke` the old token
+2. Create a fresh token
+3. Set it ONLY as `TELEGRAM_BOT_TOKEN` on the host
+4. Redeploy

@@ -1,21 +1,36 @@
-# 🎬 Timepass Premium 🚩
+# ⚡ Timepass Premium — Aurora Glass UI
 
-Welcome to **Timepass Premium**, a high-quality movie streaming and downloader platform. Get access to premium content, 4K encodes, and the latest releases with ease.
+Market se sasta OTT subscription page — Movies, Web Series, Adult aur Combo plans ke saath instant UPI + Razorpay payment flow.
 
----
+## ✨ Design
+- **Aurora Glass** — animated aurora background + glassmorphism cards
+- **Fully responsive** — 320px se 1440px+ tak tested, zero horizontal overflow
+- Mobile-first, smooth micro-interactions, `prefers-reduced-motion` support
 
 ## 🚀 Features
+- 3 pricing packs (Movies / Adult / Combo) with animated border-beam buy buttons
+- 2-step checkout: plan select → payment (UPI QR + UPI intent + Razorpay buttons + Razorpay.me universal link)
+- Screenshot verification CTA → Telegram DM with prefilled message
+- Visitor analytics → Telegram notifications (server-side) + local logs
+- Password-protected **Admin panel** (server-side auth, visitor logs, export/clear)
+- Dev drawer (portfolio/contact), FAQ, purchase guide, toast notifications
 
-- **Premium Content:** Exclusive access to the latest movies and series.
-- **High Quality:** 4K/1000bit encodes with synchronized audio.
-- **Fast Search:** Find your favorite titles instantly.
-- **Mobile Friendly:** Fully responsive design using Tailwind CSS/HTML/JS.
-- **Dark UI:** Sleek, modern interface for a better cinematic experience.
+## 🛠 Tech
+- Single-file frontend: HTML + CSS + vanilla JS (no framework)
+- Serverless functions for secrets:
+  - `api/*.js` → **Vercel** (`/api/telegram-notify`, `/api/admin-auth`)
+  - `netlify/functions/*.js` → **Netlify** (`/.netlify/functions/...`)
+  - Frontend automatically tries **both** endpoints — deploy anywhere, no code change needed.
 
-## 🛠️ Tech Stack
+## 🔐 Environment Variables (server-side only — token browser mein kabhi nahi)
 
-- **Frontend:** HTML5, CSS3, JavaScript
-- **Framework:** Tailwind CSS
-- **Platform:** [Mention if it's hosted on GitHub Pages/Vercel/Termux]
+| Variable | Kaam |
+|---|---|
+| `TELEGRAM_BOT_TOKEN` | Bot token (BotFather se) |
+| `TELEGRAM_CHAT_ID` | Jahan notifications bhejni hain |
+| `ADMIN_PASSWORD` | Admin panel ka password |
 
-##
+**Vercel:** Project Settings → Environment Variables
+**Netlify:** Site configuration → Environment variables
+
+> ⚠️ Purana bot token browser code mein expose ho chuka tha — BotFather se **revoke karke naya token** banao aur sirf env variable mein daalo. Details: `TELEGRAM_SECURITY.md`
